@@ -1,0 +1,24 @@
+spring:
+  influxdb:
+    url: http://localhost:8086
+    username: user
+    password: user
+    database: test
+    retention-policy: autogen
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: amq.topic
+          binder: rabbit
+          group: sensor-consumer-group
+      rabbit:
+        bindings:
+          input:
+            consumer:
+              queueNameGroupOnly: true
+              bindingRoutingKey: ".sensor"
+  rabbitmq:
+    host: localhost
+    password: admin
+    username: admin
