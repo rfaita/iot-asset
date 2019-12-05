@@ -29,9 +29,8 @@
 			<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.miwurster</groupId>
-			<artifactId>spring-data-influxdb</artifactId>
-			<version>1.8</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 
 		<dependency>

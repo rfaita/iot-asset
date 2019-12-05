@@ -1,10 +1,11 @@
 spring:
-  influxdb:
-    url: http://localhost:8086
-    username: user
-    password: user
-    database: test
-    retention-policy: autogen
+  data:
+    mongodb:
+      #username: root
+      #password: root
+      database: asset
+      port: 27017
+      host: localhost
   cloud:
     stream:
       bindings:
@@ -12,6 +13,9 @@ spring:
           destination: amq.topic
           binder: rabbit
           group: sensor-consumer-group
+        output:
+          destination: iot.edge.topic
+          binder: rabbit
       rabbit:
         bindings:
           input:
