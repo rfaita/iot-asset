@@ -91,8 +91,8 @@ spring:
               rabbitmq:
                 host: mqtt
                 port: 5672
-                username: guest
-                password: guest
+                username: <CHANGEIT_USER>
+                password: <CHANGEIT_PASS>
         rabbit:
           type: rabbit
           defaultCandidate: false
