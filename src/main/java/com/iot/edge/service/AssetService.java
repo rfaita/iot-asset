@@ -1,6 +1,6 @@
 package com.iot.edge.service;
 
-import com.iot.edge.component.LocalTokenCacheComponent;
+import com.iot.edge.component.LocalTokenCache;
 import com.iot.edge.model.Asset;
 import com.iot.edge.repository.AssetRepository;
 import dto.SensorData;
@@ -16,9 +16,9 @@ public class AssetService {
     private final static Logger LOGGER = LoggerFactory.getLogger(AssetService.class.getName());
 
     private final AssetRepository repository;
-    private final LocalTokenCacheComponent cache;
+    private final LocalTokenCache cache;
 
-    public AssetService(AssetRepository repository, LocalTokenCacheComponent cache) {
+    public AssetService(AssetRepository repository, LocalTokenCache cache) {
         this.repository = repository;
         this.cache = cache;
     }

@@ -26,6 +26,7 @@ public class EdgeConsumer {
     public void handle(SensorData sensorData) {
         if (service.validateSensorData(sensorData)) {
             LOGGER.info("Sensor Data : {}", sensorData);
+            sensorData.setToken(null);
             processor.output().send(MessageBuilder.withPayload(sensorData).build());
         } else {
             LOGGER.info("Rejected Sensor Data : {}", sensorData);
