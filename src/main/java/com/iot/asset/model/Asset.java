@@ -1,7 +1,8 @@
-package com.iot.edge.model;
+package com.iot.asset.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.hateoas.EntityModel;
 
 import java.util.Objects;
 
@@ -12,6 +13,9 @@ public class Asset {
     private String id;
     private String tenantId;
     private String token;
+    private double[] position;
+    private String name;
+    private String description;
 
     public String getId() {
         return id;
@@ -37,18 +41,27 @@ public class Asset {
         this.token = token;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Asset asset = (Asset) o;
-        return Objects.equals(id, asset.id) &&
-                Objects.equals(tenantId, asset.tenantId) &&
-                Objects.equals(token, asset.token);
+    public double[] getPosition() {
+        return position;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, tenantId, token);
+    public void setPosition(double[] position) {
+        this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

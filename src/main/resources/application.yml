@@ -6,50 +6,6 @@ spring:
       database: asset
       port: 27017
       host: localhost
-  cloud:
-    stream:
-      bindings:
-        input:
-          destination: amq.topic
-          binder: rabbitmqtt
-          group: sensor-consumer-group
-        output:
-          destination: iot.edge.topic
-          binder: rabbit
-      rabbit:
-        bindings:
-          input:
-            consumer:
-              queueNameGroupOnly: true
-      rabbitmqtt:
-        bindings:
-          input:
-            consumer:
-              queueNameGroupOnly: true
-              bindingRoutingKey: ".sensor"
-      binders:
-        rabbitmqtt:
-          type: rabbit
-          defaultCandidate: false
-          inheritEnvironment: false
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5673
-                username: guest
-                password: guest
-        rabbit:
-          type: rabbit
-          defaultCandidate: false
-          inheritEnvironment: false
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5672
-                username: guest
-                password: guest
 ---
 spring:
   profiles: docker-compose
@@ -60,47 +16,3 @@ spring:
       database: asset
       port: 27017
       host: mongodb
-  cloud:
-    stream:
-      bindings:
-        input:
-          destination: amq.topic
-          binder: rabbitmqtt
-          group: sensor-consumer-group
-        output:
-          destination: iot.edge.topic
-          binder: rabbit
-      rabbit:
-        bindings:
-          input:
-            consumer:
-              queueNameGroupOnly: true
-      rabbitmqtt:
-        bindings:
-          input:
-            consumer:
-              queueNameGroupOnly: true
-              bindingRoutingKey: ".sensor"
-      binders:
-        rabbitmqtt:
-          type: rabbit
-          defaultCandidate: false
-          inheritEnvironment: false
-          environment:
-            spring:
-              rabbitmq:
-                host: mqtt
-                port: 5672
-                username: <CHANGEIT_USER>
-                password: <CHANGEIT_PASS>
-        rabbit:
-          type: rabbit
-          defaultCandidate: false
-          inheritEnvironment: false
-          environment:
-            spring:
-              rabbitmq:
-                host: rabbitmq
-                port: 5672
-                username: guest
-                password: guest
