@@ -6,6 +6,9 @@ spring:
       database: asset
       port: 27017
       host: localhost
+
+server:
+  port: 9091
 ---
 spring:
   profiles: docker-compose
