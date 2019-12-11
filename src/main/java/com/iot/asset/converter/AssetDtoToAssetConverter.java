@@ -12,7 +12,6 @@ public class AssetDtoToAssetConverter implements Converter<AssetDto, Asset> {
     public Asset convert(AssetDto assetDto) {
         Asset asset = new Asset();
         asset.setDescription(assetDto.getDescription());
-        asset.setTenantId(assetDto.getTenantId());
         asset.setPosition(assetDto.getPosition());
         asset.setName(assetDto.getName());
         return asset;

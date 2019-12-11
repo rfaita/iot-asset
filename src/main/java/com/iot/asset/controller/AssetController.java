@@ -13,12 +13,11 @@ import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-
 @RestController
 @RequestMapping("asset")
 public class AssetController {
 
+    public static final String X_TENANT_ID = "X-TenantId";
     private final AssetService service;
     private final ConversionService conversionService;
 
@@ -27,8 +26,8 @@ public class AssetController {
         this.conversionService = conversionService;
     }
 
-    @GetMapping("/{tenantId}/{id}")
-    public AssetResource findById(@PathVariable String tenantId,
+    @GetMapping("/{id}")
+    public AssetResource findById(@RequestHeader(X_TENANT_ID) String tenantId,
                                   @PathVariable String id) {
 
         Asset data = service.findByIdAndTenantId(id, tenantId);
@@ -38,8 +37,8 @@ public class AssetController {
 
     }
 
-    @GetMapping("/{tenantId}")
-    public AssetsResource findAllByTenantId(@PathVariable String tenantId,
+    @GetMapping("/")
+    public AssetsResource findAllByTenantId(@RequestHeader(X_TENANT_ID) String tenantId,
                                             @RequestParam int page,
                                             @RequestParam int size,
                                             @RequestParam(required = false) String sort) {
@@ -53,9 +52,14 @@ public class AssetController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public AssetResource save(@RequestBody AssetDto assetDto) {
+    public AssetResource save(@RequestHeader(X_TENANT_ID) String tenantId,
+                              @RequestBody AssetDto assetDto) {
 
-        return new AssetResource(service.save(this.conversionService.convert(assetDto, Asset.class)));
+        Asset asset = this.conversionService.convert(assetDto, Asset.class);
+
+        asset.setTenantId(tenantId);
+
+        return new AssetResource(service.save(asset));
 
     }
 
