@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("asset")
+@RequestMapping("/asset")
 public class AssetController {
 
     public static final String X_TENANT_ID = "X-TenantId";
