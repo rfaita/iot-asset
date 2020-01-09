@@ -37,10 +37,10 @@ public class AssetController {
 
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public AssetsResource findAllByTenantId(@RequestHeader(X_TENANT_ID) String tenantId,
-                                            @RequestParam int page,
-                                            @RequestParam int size,
+                                            @RequestParam(defaultValue = "0") int page,
+                                            @RequestParam(defaultValue = "30") int size,
                                             @RequestParam(required = false) String sort) {
 
         Page<Asset> data = service.findAllByTenantId(tenantId,
